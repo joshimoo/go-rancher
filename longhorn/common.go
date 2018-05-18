@@ -11,7 +11,6 @@ import (
 	"net/url"
 	"os"
 	"regexp"
-	"strings"
 	"time"
 
 	"github.com/gorilla/websocket"
@@ -138,9 +137,7 @@ func setupRancherBaseClient(rancherClient *RancherBaseClientImpl, opts *ClientOp
 	}
 
 	if u.Path == "" || u.Path == "/" {
-		u.Path = "v2-beta"
-	} else if u.Path == "/v1" || strings.HasPrefix(u.Path, "/v1/") {
-		u.Path = strings.Replace(u.Path, "/v1", "/v2-beta", 1)
+		u.Path = "v1"
 	}
 	opts.Url = u.String()
 
