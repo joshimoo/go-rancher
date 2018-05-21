@@ -13,6 +13,8 @@ type RancherClient struct {
 	RecurringJob       RecurringJobOperations
 	ReplicaRemoveInput ReplicaRemoveInputOperations
 	SalvageInput       SalvageInputOperations
+	Replica            ReplicaOperations
+	Controller         ControllerOperations
 	Host               HostOperations
 	Volume             VolumeOperations
 	BackupVolume       BackupVolumeOperations
@@ -35,6 +37,8 @@ func constructClient(rancherBaseClient *RancherBaseClientImpl) *RancherClient {
 	client.RecurringJob = newRecurringJobClient(client)
 	client.ReplicaRemoveInput = newReplicaRemoveInputClient(client)
 	client.SalvageInput = newSalvageInputClient(client)
+	client.Replica = newReplicaClient(client)
+	client.Controller = newControllerClient(client)
 	client.Host = newHostClient(client)
 	client.Volume = newVolumeClient(client)
 	client.BackupVolume = newBackupVolumeClient(client)

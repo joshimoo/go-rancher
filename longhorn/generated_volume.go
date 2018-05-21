@@ -7,9 +7,7 @@ const (
 type Volume struct {
 	Resource
 
-	Actions map[string]interface{} `json:"actions,omitempty" yaml:"actions,omitempty"`
-
-	Controller map[string]interface{} `json:"controller,omitempty" yaml:"controller,omitempty"`
+	Controller *Controller `json:"controller,omitempty" yaml:"controller,omitempty"`
 
 	Created string `json:"created,omitempty" yaml:"created,omitempty"`
 
@@ -19,23 +17,19 @@ type Volume struct {
 
 	FromBackup string `json:"fromBackup,omitempty" yaml:"from_backup,omitempty"`
 
-	Links map[string]interface{} `json:"links,omitempty" yaml:"links,omitempty"`
-
 	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
 	NumberOfReplicas int64 `json:"numberOfReplicas,omitempty" yaml:"number_of_replicas,omitempty"`
 
-	RecurringJobs []string `json:"recurringJobs,omitempty" yaml:"recurring_jobs,omitempty"`
+	RecurringJobs []RecurringJob `json:"recurringJobs,omitempty" yaml:"recurring_jobs,omitempty"`
 
-	Replicas []string `json:"replicas,omitempty" yaml:"replicas,omitempty"`
+	Replicas []Replica `json:"replicas,omitempty" yaml:"replicas,omitempty"`
 
 	Size string `json:"size,omitempty" yaml:"size,omitempty"`
 
 	StaleReplicaTimeout int64 `json:"staleReplicaTimeout,omitempty" yaml:"stale_replica_timeout,omitempty"`
 
 	State string `json:"state,omitempty" yaml:"state,omitempty"`
-
-	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 }
 
 type VolumeCollection struct {
