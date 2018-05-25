@@ -40,14 +40,13 @@ func capitalize(s string) string {
 	if len(s) <= 1 {
 		return strings.ToUpper(s)
 	}
-
 	return strings.ToUpper(s[:1]) + s[1:]
 }
 
 func getTypeMap(schema client.Schema) map[string]string {
 	result := map[string]string{}
 	for name, field := range schema.ResourceFields {
-		if name == "id" {
+		if name == "id" || name == "links" || name == "actions" || name == "type" {
 			continue
 		}
 
@@ -74,8 +73,8 @@ func getTypeMap(schema client.Schema) map[string]string {
 			case "array[json]":
 				result[fieldName] = "[]interface{}"
 			default:
-				s := strings.TrimLeft(field.Type, "array[")
-				s = strings.TrimRight(s, "]")
+				s := strings.TrimPrefix(field.Type, "array[")
+				s = strings.TrimSuffix(s, "]")
 				result[fieldName] = "[]" + capitalize(s)
 			}
 		} else if strings.HasPrefix(field.Type, "map[string]") {
