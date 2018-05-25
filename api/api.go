@@ -151,7 +151,7 @@ func ResourceToMap(obj interface{}, schemas *client.Schemas) (map[string]interfa
 
 	schema, ok := schemas.CheckSchema(resourceType)
 	if !ok {
-		logrus.Errorf("Attempting to Write an unknown type: %s", resource.Type)
+		logrus.Errorf("Attempting to Write an unknown type: %s", resourceType)
 		return result, nil
 	}
 
